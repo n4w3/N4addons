@@ -36,7 +36,7 @@ function showDisappearMessage() {
     let ticks = 0;
 
     const renderTrigger = register("renderOverlay", () => {
-        if (ticks > 60) {
+        if (ticks > 20) {
             renderTrigger.unregister();
             return;
         }

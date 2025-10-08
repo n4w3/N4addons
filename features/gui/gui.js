@@ -4,6 +4,7 @@ import { toggleChatCommands } from "../ChatCommands";
 import { toggleDungeonDropDetector, togglePartyChat, toggleGuildChat } from "../dungeon/DungeonDropDetector";
 
 export const gui = new Gui("N4 addons");
+gui.setColorScheme("data/ColorScheme.json");
 
 const dialogueSkipToggle = new Toggle("BloodSkipper", 10, 30, true, (state) => {
     toggleDialogueSkip(state);
