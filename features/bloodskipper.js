@@ -17,7 +17,7 @@ register("tick", () => {
     });
 
     if (wasPresent && !found) {
-        ChatLib.chat(`§4[N4] Kill Mobs!`);
+        ChatLib.say(`§4[N4] Kill Mobs!`);
         showDisappearMessage();
     }
 
