@@ -4,13 +4,16 @@ export function toggleChatCommands(state) {
     enabled = state;
 }
 
-register("chat", (event) => {
+register("chat", (player, cmd) => {
+
     if (!enabled) return;
-    const message = ChatLib.getChatMessage(event);
 
-    const clean = message.replace(/§./g, "").trim();
-
-    if (clean === "!N4" || clean === "!n4") {
-        ChatLib.say("https://discord.gg/BFHXFPPPQ6");
-    }
-});
+    cmd = cmd.trim().toLowerCase();
+    
+    if(cmd === "warp" || cmd === "w") 
+        ChatLib.command(`p warp`)
+    if(cmd === "allinv" || cmd === "allinvite") 
+        ChatLib.command(`party settings allinvite`)
+    if(cmd === "n4" || cmd === "n4addons") 
+        ChatLib.say(`https://discord.gg/BFHXFPPPQ6`)
+}).setCriteria(/Party > (?:\[[^\]]+\] )?(\w+): ([^]+)/);

@@ -18,6 +18,8 @@ import { request } from "axios"
 
 import DungeonItems from "../../data/dungeonitems.json";
 
+import { partymsg, guildmsg } from "../../utils/utils";
+
 const items = DungeonItems;
 
 let AHdata, BZdata
@@ -81,11 +83,11 @@ register("guiOpened", () => {
             ChatLib.chat(`${matchedItem.ccode}${message}`);
 
             if (partyChat) {
-                ChatLib.say(`/pc ${message}`);
+                partymsg(message);
             }
 
             if (guildChat) {
-                ChatLib.say(`/gc ${message}`);
+                guildmsg(message);
             }
         }
       }
