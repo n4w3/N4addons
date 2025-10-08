@@ -1,0 +1,6 @@
+/* Mythic = "§d"
+Legendary = "§6"
+Epic = "§5"
+Rare = "§9"
+Uncommon = "§a"
+Common = "§7" */

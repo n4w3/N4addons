@@ -1,7 +1,14 @@
+let enabled = true;
+
+export function toggleDialogueSkip(state) {
+    enabled = state;
+}
+
 const TARGET_NAME = "handle this"; 
 let wasPresent = false;
 
 register("tick", () => {
+    if (!enabled) return;
     const found = World.getAllEntities().some(e => {
         if (e.getClassName() !== "EntityArmorStand") return false;
 
