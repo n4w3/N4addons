@@ -66,3 +66,15 @@ export async function scrapeAndSaveMayorData() {
         return { mayor: { name: 'Error', perks: [] }, minister: { name: 'Error', perks: [] } };
     }
 }
+
+export function readMayorData() {
+    try {
+        const jsonContent = FileLib.read(N4, "../data/Mayor.json");
+        if (jsonContent) {
+            return JSON.parse(jsonContent);
+        }
+    } catch (e) {
+        console.error("Error while reading mayor and minister data:", e);
+    }
+    return null;
+}

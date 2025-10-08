@@ -1,3 +1,5 @@
+import { readMayorData } from "../../utils/mayordetector";
+
 let enabled = true;
 let partyChat = true;
 let guildChat = false;
@@ -54,12 +56,26 @@ request({
       }
 })
 
+const TARGET_PERK = "Marauder";
+
 register("guiOpened", () => {
     if (!enabled) return;
 
     Client.scheduleTask(2, () => {
     const itemsInContainer = Player.getContainer().getItems();
     if (!ChestNames.includes(Player.getContainer().getName().removeFormatting())) return;
+
+    const mayorData = readMayorData();
+
+    const checkDiscount = (role) => {
+        if (!role || role.name === 'Not found') return false;
+
+        const perkActive = role.perks.some(p => p.toLowerCase() === TARGET_PERK.toLowerCase());
+        
+        return perkActive; 
+    };
+    
+    const isDiscountActive = mayorData && (checkDiscount(mayorData.mayor) || checkDiscount(mayorData.minister));
 
     itemsInContainer.slice(0, 28).forEach((item) => {
         if (item) {
@@ -75,7 +91,13 @@ register("guiOpened", () => {
             if (itemLocation === "bz" && BZdata) price = BZdata[matchedKey]?.buyPrice || "Price not found";
             else if (itemLocation === "ah" && AHdata) price = AHdata[matchedKey] || "Price not found";
 
-            const chestPrice = Number(matchedItem.chestprice);
+            const basePrice = Number(matchedItem.chestprice);
+            let chestPrice = basePrice;
+
+            if (isDiscountActive) {
+                chestPrice = basePrice * 0.8; 
+            }
+
             const profit = Number(price) - chestPrice;
 
             const message = `Found ${matchedItem.name}, +(${formatNumber(profit, true)} coins)`;
