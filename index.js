@@ -1,22 +1,11 @@
-import { gui } from "./features/gui/gui";
-import { scrapeAndSaveMayorData } from "./utils/mayordetector";
+import Settings from "./config";
 
-import "./features/dungeon/DialogueSkip";
-import "./features/ChatCommands";
-import "./features/dropdetector";
+// command
+import "./features/chatcommands";
 
-const INTERVAL_TIME_MS = 5 * 60 * 1000;
+// dungeon
+import "./features/dungeon/dialogueskip";
 
 register("command", () => {
-        gui.open()
+    Settings().getConfig().openGui()
 }).setName("N4").setAliases("n4", "N4addons", "n4addons");
-
-register('gameLoad', () => {
-    
-    scrapeAndSaveMayorData(); 
-
-    registerInterval(() => {
-        scrapeAndSaveMayorData();
-    }, INTERVAL_TIME_MS);
-
-});

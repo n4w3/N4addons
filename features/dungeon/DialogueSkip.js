@@ -1,52 +1,40 @@
-let enabled = true;
+import Settings from "../../config";
 
-export function toggleDialogueSkip(state) {
-    enabled = state;
-}
+const EntityArmorStand = Java.type("net.minecraft.entity.item.EntityArmorStand");
 
-const TARGET_NAME = "handle this"; 
+const TARGET_NAME = "Let's see how you can handle this."; 
 let wasPresent = false;
 
 register("tick", () => {
-    if (!enabled) return;
-    const found = World.getAllEntities().some(e => {
-        if (e.getClassName() !== "EntityArmorStand") return false;
+    if (!Settings().DialogueSkip) return;
 
-        const nbt = e.getNBT();
-        if (!nbt.getBoolean("CustomNameVisible")) return false;
+    let found = false;
 
-        let name = nbt.getString("CustomName");
-        if (!name) return false;
+    const entities = World.getAllEntitiesOfType(EntityArmorStand);
+    
+    for (let entity of entities) {
+        let name = entity.getName();
+        if (!name) continue;
 
         name = name.replace(/§./g, "");
 
-        return name.toLowerCase().includes(TARGET_NAME.toLowerCase());
-    });
-
+        if (name.toLowerCase().includes(TARGET_NAME.toLowerCase())) {
+            found = true;
+            break; // Sort immédiatement : la présence est confirmée
+        }
+    }
+    
     if (wasPresent && !found) {
-        ChatLib.say(`§4[N4] Kill Mobs!`);
-        showDisappearMessage();
+        const message = `§4Kill Mobs!`;
+        World.playSound("note.pling", 1, 2)
+        Client.showTitle("§4Kill Mobs!", "", 5, 30, 10);
+        if (Settings().DialogueSkipMsg) {
+                ChatLib.command(`pc [N4] Kill Mobs!`);
+        }
+        else {
+                ChatLib.chat("§4[N4] Kill Mobs!");
+        }
     }
 
     wasPresent = found;
 });
-
-function showDisappearMessage() {
-    const message = `§4Kill Mobs!`;
-    let ticks = 0;
-
-    const renderTrigger = register("renderOverlay", () => {
-        if (ticks > 20) {
-            renderTrigger.unregister();
-            return;
-        }
-
-        Renderer.drawString(
-            message,
-            Renderer.screen.getWidth() / 2 - Renderer.getStringWidth(message) / 2,
-            Renderer.screen.getHeight() / 2
-        );
-
-        ticks++;
-    });
-}

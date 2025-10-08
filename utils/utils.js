@@ -1,3 +1,8 @@
+export const PREFIX = "&9[N4] &7";
+
+export function prefix(msg) {
+    ChatLib.chat(PREFIX + msg);
+}
 export function partymsg(msg) {
     if(!msg) return
     ChatLib.command("pc " + msg)
@@ -13,6 +18,27 @@ export function allchatmsg(msg) {
     ChatLib.command("ac " + msg)
 }
 
+export function formatNumber(num, colorize = false) {
+    if (typeof num !== 'number') return String(num);
+
+    let sign = num < 0 ? "-" : "";
+    let absNum = Math.abs(num);
+    let color = colorize ? (num >= 0 ? "&a" : "&c") : "";
+
+    if (absNum >= 1000000000) {
+        return `${color}${sign}${(absNum / 1000000000).toFixed(2)}B`;
+    } else if (absNum >= 1000000) {
+        return `${color}${sign}${(absNum / 1000000).toFixed(2)}M`;
+    } else if (absNum >= 1000) {
+        return `${color}${sign}${(absNum / 1000).toFixed(1)}k`;
+    }
+    return `${color}${sign}${Math.round(absNum).toLocaleString('en-US')}`;
+}
+
+export const ChestNames = [
+    "Obsidian Chest", 
+    "Bedrock Chest",
+];
 
 export class Itemutils {
     

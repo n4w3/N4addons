@@ -1,19 +1,9 @@
-let enabled = true;
+import Settings from "../config";
 
-export function toggleChatCommands(state) {
-    enabled = state;
-}
-
-register("chat", (player, cmd) => {
-
-    if (!enabled) return;
-
-    cmd = cmd.trim().toLowerCase();
-    
-    if(cmd === "warp" || cmd === "w") 
-        ChatLib.command(`p warp`)
-    if(cmd === "allinv" || cmd === "allinvite") 
-        ChatLib.command(`party settings allinvite`)
-    if(cmd === "n4" || cmd === "n4addons") 
-        ChatLib.say(`https://discord.gg/BFHXFPPPQ6`)
-}).setCriteria(/Party > (?:\[[^\]]+\] )?(\w+): ([^]+)/);
+register("chat", (name, cmd, event) => {
+    if(!Settings().chatcommands) return
+    if(cmd == "pko" || cmd == "kickoffline") 
+        ChatLib.command(`party kickoffline`)
+    if(cmd == "n4" || cmd == "n4addons") 
+        ChatLib.command(`pc https://discord.gg/BFHXFPPPQ6`)
+}).setCriteria(/Party > (?:.+) (.+): (?:-|,|;|<|>|!)(.+)/)
