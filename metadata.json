@@ -1,0 +1,8 @@
+{
+    "name": "N4addons",
+    "version": "1.0.0",
+    "author": "N4w3",
+    "entry": "index.js",
+    "description": "Tell you when to dialogue skip and some others features.",
+    "requires": []
+}
