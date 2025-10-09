@@ -1,10 +1,15 @@
 import Settings from "./config";
 
-// command
-import "./features/chatcommands";
-
 // dungeon
 import "./features/dungeon/dialogueskip";
+
+// kuudra
+
+// others
+import "./features/others/chatcommands";
+
+// slayer
+
 
 register("command", () => {
     Settings().getConfig().openGui()

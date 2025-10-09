@@ -1,4 +1,4 @@
-import Settings from "../config";
+import Settings from "../../config";
 
 register("chat", (name, cmd, event) => {
     if(!Settings().chatcommands) return
