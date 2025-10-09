@@ -18,6 +18,20 @@ config
     subcategory: "Dialogue Skip"
 })
 .addSwitch({
+    category: "Kuudra",
+    configName: "chestopened",
+    title: "Chest opened",
+    description: "Tell party when your chest as been opened",
+    subcategory: "Kuudra Requeue"
+})
+.addSwitch({
+    category: "Kuudra",
+    configName: "autorequeue",
+    title: "Auto Requeue",
+    description: "Automatically requeue when everyone has opened their chest",
+    subcategory: "Kuudra Requeue"
+})
+.addSwitch({
     category: "Others",
     configName: "chatcommands",
     title: "Chat Commands",
