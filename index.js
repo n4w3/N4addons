@@ -7,6 +7,7 @@ import "./features/dungeon/dialogueskip";
 
 // others
 import "./features/others/chatcommands";
+import "./features/others/guildhider";
 
 // slayer
 

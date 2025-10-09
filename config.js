@@ -21,8 +21,15 @@ config
     category: "Others",
     configName: "chatcommands",
     title: "Chat Commands",
-    description: "Enable/Disable Chat Commands",
+    description: "Enable Chat Commands",
     subcategory: "chatcommands"
+})
+.addSwitch({
+    category: "Others",
+    configName: "guildhider",
+    title: "Guild Message Hider",
+    description: "Disable Guild Messages",
+    subcategory: "guildhider"
 })
 
 
