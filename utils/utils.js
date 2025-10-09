@@ -23,6 +23,21 @@ export function allchatmsg(msg) {
     ChatLib.command("ac " + msg)
 }
 
+export function command(msg) {
+    if(!msg) return
+    ChatLib.command(msg)
+}
+
+export function title(color, msg, subtitle, fadein, stay, fadeout) {
+    if(!msg) return
+    Client.showTitle(color + msg, subtitle, fadein, stay, fadeout);
+}
+
+export function sound(sound, volume, pitch) {
+    if(!sound) return
+    World.playSound(sound, volume, pitch)
+}
+
 export function formatNumber(num, colorize = false) {
     if (typeof num !== 'number') return String(num);
 

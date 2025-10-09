@@ -1,5 +1,5 @@
 import Settings from "../../config";
-import { modprefix, chatprefix, partymsg } from "../../utils/utils";
+import { title, sound, modprefix, chatprefix, partymsg } from "../../utils/utils";
 
 const EntityArmorStand = Java.type("net.minecraft.entity.item.EntityArmorStand");
 
@@ -27,8 +27,8 @@ register("tick", () => {
     
     if (wasPresent && !found) {
         const msg = 'Kill Mobs!';
-        World.playSound("note.pling", 1, 2)
-        Client.showTitle("§4" + msg, "", 5, 30, 10);
+        sound("note.pling", 1, 2)
+        title("§4" + msg, "", 5, 30, 10);
         if (Settings().DialogueSkipMsg) {
                 partymsg(chatprefix(msg));
         }

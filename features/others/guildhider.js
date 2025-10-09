@@ -1,3 +1,5 @@
+import Settings from "../../config";
+
 register("chat", (event) => {
     if (!Settings().guildhider) return;
     const msg = ChatLib.getChatMessage(event);
