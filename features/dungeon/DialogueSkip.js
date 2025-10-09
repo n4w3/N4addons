@@ -20,7 +20,7 @@ register("tick", () => {
 
         if (name.toLowerCase().includes(TARGET_NAME.toLowerCase())) {
             found = true;
-            break; // Sort immédiatement : la présence est confirmée
+            break;
         }
     }
     
