@@ -1,8 +1,13 @@
-export const PREFIX = "&9[N4] &7";
+export const prefix = "[N4] ";
 
-export function prefix(msg) {
-    ChatLib.chat(PREFIX + msg);
+export function chatprefix(msg) {
+    return prefix + msg;
 }
+
+export function modprefix(msg) {
+    ChatLib.chat("&4" + prefix + msg);
+}
+
 export function partymsg(msg) {
     if(!msg) return
     ChatLib.command("pc " + msg)

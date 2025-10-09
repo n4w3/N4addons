@@ -1,4 +1,5 @@
 import Settings from "../../config";
+import { modprefix, chatprefix, partymsg } from "../../utils/utils";
 
 const EntityArmorStand = Java.type("net.minecraft.entity.item.EntityArmorStand");
 
@@ -25,14 +26,14 @@ register("tick", () => {
     }
     
     if (wasPresent && !found) {
-        const message = `§4Kill Mobs!`;
+        const msg = 'Kill Mobs!';
         World.playSound("note.pling", 1, 2)
-        Client.showTitle("§4Kill Mobs!", "", 5, 30, 10);
+        Client.showTitle("§4" + msg, "", 5, 30, 10);
         if (Settings().DialogueSkipMsg) {
-                ChatLib.command(`pc [N4] Kill Mobs!`);
+                partymsg(chatprefix(msg));
         }
         else {
-                ChatLib.chat("§4[N4] Kill Mobs!");
+                modprefix(msg);
         }
     }
 
