@@ -1,13 +1,15 @@
 import Settings from "./config";
 
+
 // dungeon
-import "./features/dungeon/dialogueskip";
+import "./features/dungeon/DialogueSkip";
 
 // kuudra
+import "./features/kuudra/chestlooted";
+import "./features/kuudra/autorequeue";
 
 // others
 import "./features/others/chatcommands";
-import "./features/others/guildhider";
 
 // slayer
 

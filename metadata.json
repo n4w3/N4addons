@@ -4,5 +4,5 @@
     "author": "N4w3",
     "entry": "index.js",
     "description": "Tell you when to dialogue skip and some others features.",
-    "requires": ["Amaterasu", "Axios"]
+    "requires": ["Amaterasu", "Axios", "BloomCore"]
 }

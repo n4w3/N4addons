@@ -1,0 +1,52 @@
+[
+    {
+        "category": "Dungeons",
+        "settings": [
+            {
+                "type": 6,
+                "name": "DialogueSkip",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "DialogueSkipMsg",
+                "value": true
+            }
+        ]
+    },
+    {
+        "category": "Kuudra",
+        "settings": [
+            {
+                "type": 6,
+                "name": "chestopened",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "autorequeue",
+                "value": true
+            },
+            {
+                "type": 1,
+                "name": "chestrequired",
+                "value": 4
+            },
+            {
+                "type": 6,
+                "name": "iqmod",
+                "value": true
+            }
+        ]
+    },
+    {
+        "category": "Others",
+        "settings": [
+            {
+                "type": 6,
+                "name": "chatcommands",
+                "value": true
+            }
+        ]
+    }
+]

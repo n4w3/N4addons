@@ -1,16 +1,25 @@
 import Settings from "../../config";
-import { command, chatprefix, partymsg } from "../../utils/utils";
+import { command, partymsg, chatprefix } from "../../utils/function";
+import Skyblock from "../../../BloomCore/Skyblock"
+import { registerWhen } from "../../utils/register"
 
-register("chat", () => {
-    if (!Settings().autorequeue) return;
-    if (chestopened == 4) {
-        if (msg.includes("Chest Opened")) {
-        chestopened+= 1;
-        if (chestopened == 4) {
-            partymsg(chatprefix("Everyone has opened their chest, requeuing..."));
-            command("joindungeon kuudra_infernal");
-}}}});
+let playerFound = 0
 
-register("worldload", () => {
-    chestopened = 0;
-})
+registerWhen(register("worldLoad", () => {
+    playerFound = 0
+}), () => Skyblock.subArea === "Kuudra's Hollow")
+
+registerWhen(register("chat", (rank, user, mod) => {
+    playerFound++
+    if (playerFound < Settings().chestrequired) {
+        ChatLib.chat(`§4${user} §8(§7${playerFound}§8/§7${Settings().chestrequired}§8)`)
+    } else if (playerFound == Settings().chestrequired) {
+        ChatLib.chat(`§4${user} §8(§a${playerFound}§8/§a${Settings().chestrequired}§8)`)
+        if (Settings().autorequeue) {
+            partymsg(chatprefix("Everyone has oppened their chest, auto requeueing..."));
+            command("instancerequeue");
+            
+        }
+
+    }
+}).setCriteria("Party > ${rank} ${user}: [${mod}] Chest Looted"), () => Skyblock.subArea === "Kuudra's Hollow")
