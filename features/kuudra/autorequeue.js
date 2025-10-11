@@ -1,5 +1,5 @@
 import Settings from "../../config";
-import { command, partymsg, chatprefix } from "../../utils/function";
+import { command, partymsg, chatprefix } from "../../utils/functions";
 import Skyblock from "../../../BloomCore/Skyblock"
 import { registerWhen } from "../../utils/register"
 import { getDtStatus, getDtName } from "../../utils/dt";
@@ -22,11 +22,9 @@ registerWhen(register("chat", (rank, user, mod) => {
             const currentDtName = getDtName();
 
             if (currentDtStatus === true) {
-                ChatLib.chat(currentDtStatusdt)
-                partymsg(chatprefix(`${playerFound}/${Settings().chestrequired} Looted - Wait for ${dtname}...`));
+                partymsg(chatprefix(`${playerFound}/${Settings().chestrequired} Looted - Waiting for ${currentDtName}...`));
             }
             else {
-                ChatLib.chat(currentDtStatus)
                 partymsg(chatprefix(`${playerFound}/${Settings().chestrequired} Looted - Requeuing...`));
                 command("instancerequeue");
             }

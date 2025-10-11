@@ -1,5 +1,5 @@
 import Settings from "../../config";
-import { chatprefix, partymsg } from "../../utils/function";
+import { chatprefix, partymsg } from "../../utils/functions";
 import Skyblock from "../../../BloomCore/Skyblock"
 import { registerWhen } from "../../utils/register"
 import config from "../../config";

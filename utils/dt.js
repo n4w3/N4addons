@@ -1,5 +1,5 @@
 import Settings from "../config";
-import { command, partymsg, chatprefix } from "./function";
+import { command, partymsg, chatprefix, extractPlayerName } from "./functions";
 
 let dtStatus = {
     dt: false,
@@ -19,31 +19,33 @@ export function resetDt() {
     dtStatus.i = 0;
 }
 
-register("chat", (name, reason) => {
+register("chat", (fullname, reason) => {
     dtStatus.i++;
+    const name = extractPlayerName(fullname);
     if(dtStatus.i == 1) {
         dtStatus.dtname = name;
-        partymsg(chatprefix(`${name} needs downtime`));
+        partymsg(chatprefix(`${fullname} needs downtime`));
     }
     else {
         dtStatus.dtname += ", " + name
-        partymsg(chatprefix(`${name} needs downtime`));
-    }    
-    dt = true
-}).setCriteria("Party > ${name}: !dt ${reason}")
-
-register("chat", (name) => {
-    i++
-    if(i == 1) {
-        dtname = name
-        partymsg(chatprefix(`${dtname} needs downtime`));
-    }
-    else {
-        dtname += ", " + name
-        partymsg(chatprefix(`${name} needs downtime`));
+        partymsg(chatprefix(`${fullname} needs downtime`));
     }    
     dtStatus.dt = true;
-}).setCriteria("Party > ${name}: !dt")
+}).setCriteria("Party > ${fullname}: !dt ${reason}")
+
+register("chat", (fullname) => {
+    dtStatus.i++;
+    const name = extractPlayerName(fullname);
+    if(dtStatus.i == 1) {
+        dtStatus.dtname = name;
+        partymsg(chatprefix(`${fullname} needs downtime`));
+    }
+    else {
+        dtStatus.dtname += ", " + name
+        partymsg(chatprefix(`${fullname} needs downtime`));
+    }    
+    dtStatus.dt = true;
+}).setCriteria("Party > ${fullname}: !dt")
 
 register("worldLoad", () => {
     resetDt();

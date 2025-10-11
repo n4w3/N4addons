@@ -1,5 +1,5 @@
 import Settings from "../../config";
-import { command, partymsg, chatprefix } from "../../utils/function";
+import { command, partymsg, chatprefix } from "../../utils/functions";
 
 register("chat", (name, cmd, event) => {
     if(!Settings().chatcommands) return

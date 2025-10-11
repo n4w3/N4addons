@@ -9,7 +9,8 @@ import "./features/kuudra/chestlooted";
 import "./features/kuudra/autorequeue";
 
 // others
-import "./features/dt.js/chatcommands";
+import "./features/others/chatcommands";
+import "./utils/dt";
 
 // slayer
 

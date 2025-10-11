@@ -1,5 +1,5 @@
 import Settings from "../../config";
-import { title, sound, modprefix, chatprefix, partymsg } from "../../utils/function";
+import { title, sound, modprefix, chatprefix, partymsg } from "../../utils/functions";
 import { EntityArmorStand } from "../../utils/constants";
 
 const TARGET_NAME = "Let's see how you can handle this."; 
