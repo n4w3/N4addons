@@ -2,6 +2,7 @@ import Settings from "../../config";
 import { command, partymsg, chatprefix } from "../../utils/function";
 import Skyblock from "../../../BloomCore/Skyblock"
 import { registerWhen } from "../../utils/register"
+import { dt, dtname } from "../others/chatcommands"; 
 
 let playerFound = 0
 
@@ -12,13 +13,17 @@ registerWhen(register("worldLoad", () => {
 registerWhen(register("chat", (rank, user, mod) => {
     playerFound++
     if (playerFound < Settings().chestrequired) {
-        ChatLib.chat(`§4${user} §8(§7${playerFound}§8/§7${Settings().chestrequired}§8)`)
+        ChatLib.chat(`§4${rank} ${user} §8(§7${playerFound}§8/§7${Settings().chestrequired}§8)`)
     } else if (playerFound == Settings().chestrequired) {
-        ChatLib.chat(`§4${user} §8(§a${playerFound}§8/§a${Settings().chestrequired}§8)`)
+        ChatLib.chat(`§4${rank} ${user} §8(§a${playerFound}§8/§a${Settings().chestrequired}§8)`)
         if (Settings().autorequeue) {
-            partymsg(chatprefix("Everyone has oppened their chest, auto requeueing..."));
+            if (dt == true) {
+            partymsg(chatprefix(`${playerFound}/${Settings().chestrequired} Looted - Wait for ${dtname}...`));
+            }
+            else {
+            partymsg(chatprefix(`${playerFound}/${Settings().chestrequired} Looted - Requeuing...`));
             command("instancerequeue");
-            
+            }
         }
 
     }
