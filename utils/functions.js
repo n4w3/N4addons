@@ -1,11 +1,11 @@
-import { prefix, HYPIXEL_RANKS } from "./constants";
+import { PREFIX, HYPIXEL_RANKS } from "./constants";
 
 export function chatprefix(msg) {
-    return prefix + msg;
+    return PREFIX + msg;
 }
 
 export function modprefix(msg) {
-    ChatLib.chat("&4" + prefix + msg);
+    ChatLib.chat("&4" + PREFIX + msg);
 }
 
 export function partymsg(msg) {

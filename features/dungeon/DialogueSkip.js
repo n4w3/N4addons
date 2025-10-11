@@ -1,6 +1,6 @@
 import Settings from "../../config";
 import { title, sound, modprefix, chatprefix, partymsg } from "../../utils/functions";
-import { EntityArmorStand } from "../../utils/constants";
+import { ENTITY_ARMOR_STAND } from "../../utils/constants";
 
 const TARGET_NAME = "Let's see how you can handle this."; 
 let wasPresent = false;
@@ -10,7 +10,7 @@ register("tick", () => {
 
     let found = false;
 
-    const entities = World.getAllEntitiesOfType(EntityArmorStand);
+    const entities = World.getAllEntitiesOfType(ENTITY_ARMOR_STAND);
     
     for (let entity of entities) {
         let name = entity.getName();
